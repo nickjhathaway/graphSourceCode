@@ -277,12 +277,14 @@ int main(int argc, char* argv[]) {
 	bool printAll = false;
 	bool overWrite = false;
 	setUp.setOption(filename, "-file,-filename", "filename", true);
-	setUp.setOption(headerName, "-header,-headerName", "header", true);
+	if(!setUp.setOption(printAll, "-printAll,-all", "printAllchanges")){
+		setUp.setOption(headerName, "-header,-headerName", "header", true);
+		printGraphViz = setUp.setOption(outFilename, "-out,-outFile", "outfilename", true);
+	}
 	setUp.setOption(overWrite, "-overWrite", "overWrite");
 	printGraphViz = setUp.setOption(outFilename, "-out,-outFile", "outfilename");
-	if(printGraphViz){
-		setUp.setOption(printAll, "-printAll,-all", "printAllchanges");
-	}
+
+
 	setUp.finishSetUp(std::cout);
 	//setUp.startARunLog(setUp.directoryName_);
 	std::ifstream inFile(filename);
@@ -302,12 +304,14 @@ int main(int argc, char* argv[]) {
 			inGraph.addNode(tempStr);
 		}
 	}
+	if(headerName != ""){
+		headerName = replaceString(headerName, ".h", "_h");
+		inGraph.printChildren(inGraph.nodes_[inGraph.nodesPosition_[headerName]], std::cout);
+		inGraph.reset();
+		inGraph.modChildren(inGraph.nodes_[inGraph.nodesPosition_[headerName]], graphColors::modColor);
+		inGraph.nodes_[inGraph.nodesPosition_[headerName]]->color_ = "#ff0000";
+	}
 
-	headerName = replaceString(headerName, ".h", "_h");
-	inGraph.printChildren(inGraph.nodes_[inGraph.nodesPosition_[headerName]], std::cout);
-	inGraph.reset();
-	inGraph.modChildren(inGraph.nodes_[inGraph.nodesPosition_[headerName]], graphColors::modColor);
-	inGraph.nodes_[inGraph.nodesPosition_[headerName]]->color_ = "#ff0000";
 	//
 	if(printGraphViz){
 		std::ofstream outFile;
