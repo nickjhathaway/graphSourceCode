@@ -31,7 +31,10 @@ A red edge is cpp including a header and a blue edge is a header including a hea
 dot -T pdf -O scrMapped.dot
 
 Then running on file modification effects, give the previous mapped file and give a header that was changed
-and a name for 
+and a name for the outfile 
+All green nodes are files not affected and the red node is the file affected and the purpurle nodes
+are the files affected
+
 fileModAffect -file scrMapped.dot -header utils.hpp -out utilsModAffect.dot
 
 Give -overWrite to overwrite the file if it already exists 
@@ -43,5 +46,5 @@ dot -T pdf -O utilsModAffect.dot
 And then to get all affects give 
 fileModAffect -file scrMapped.dot -all -out modAll.dot -overWrite
 
-
+dot -T pdf -O modAll.dot
 
