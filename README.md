@@ -12,8 +12,11 @@ Then run make (g++-4.8 needs to be in your path)
 
 
 cd graphSourCode
+
 ./setup.py cppprogutils
+
 ./setup.py cppitertools
+
 make 
 
 ------------
