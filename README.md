@@ -5,7 +5,8 @@ Some scripts for graphing out c++ source code
 
 
 -----------
-Install
+Installing
+
 clone the repo and change to the directory to download the needed libraries.
 Then run make (g++-4.8 needs to be in your path)
 
