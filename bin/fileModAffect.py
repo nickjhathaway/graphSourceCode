@@ -178,7 +178,7 @@ def main():
     graph.printGraphViz(outFileTest, "all")
     graph.reset()
     for key, value in graph.nodePositions_.iteritems():
-        graph.nodes_[value].visted_ = False
+        #graph.nodes_[value].visted_ = False
         print graph.nodes_[value].value_
         print graph.nodes_[value].visted_
     chil2 = graph.getChildrenList(graph.nodePositions_["profilerSetUp_hpp"]);
